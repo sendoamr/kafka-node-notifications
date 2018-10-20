@@ -24,7 +24,7 @@ Stop Kafka and zookepper
 docker-compose down
 ```
 
-#Launch the circuit services
+## Launch the circuit services
 ```
 npm run app
 npm run event_processor
@@ -46,3 +46,9 @@ make
 make install
 ldconfig
 ```
+
+## Next steps
+- End the enrichment process
+- Refactor/clean code and improvments
+- Metrics of deliver (time, count, ...)
+- Dockerize all node components
