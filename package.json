@@ -1,0 +1,16 @@
+{
+  "name": "kafka-sendoa-test",
+  "version": "1.0.0",
+  "description": "Producer and consumer of kafka",
+  "author": "Sendoa Moronta",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node-rdkafka": "^2.4.0"
+  },
+  "scripts": {
+    "app": "node app.js",
+    "event_processor": "node event_processor.js",
+    "enricher": "node enricher.js",
+    "deliver": "node deliver.js"
+  }
+}
