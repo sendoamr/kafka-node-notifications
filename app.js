@@ -2,19 +2,18 @@ var express = require("express");
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-const Kafka = require("node-rdkafka");
 var producer = require("./util/producer");
-const topic = 'smr__events';
 
+const topic = 'evt__events';
 const callback = " https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20";
 const event_types = new Map();
 event_types.set('event_type1', {
-	enrich_required: true,
+	location: true,
 	callback: callback
 });
 event_types.set('event_type2', {
-	enrich_required: false,
-	callback: callback
+	location: false,
+	callback: callback,
 });
 
 const eventsProducer = producer.kafkaProducer(topic);

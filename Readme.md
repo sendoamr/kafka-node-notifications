@@ -24,12 +24,25 @@ Stop Kafka and zookepper
 docker-compose down
 ```
 
-## Launch the circuit services
+## Launch the app server to receive notifications
 ```
 npm run app
-npm run event_processor
-npm run enricher
-npm run deliver
+```
+## Launch processor to catch evt__events and send to topic
+```
+npm run processor
+```
+## Launch location process to enrich geolocation payload
+```
+npm run location
+```
+## Launch the process to send http post events
+```
+npm run post_deliver
+```
+## Launch the process to send mail post events
+```
+npm run mail_deliver
 ```
 
 ## Utils

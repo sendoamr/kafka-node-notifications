@@ -2,7 +2,7 @@ const Kafka = require("node-rdkafka");
 
 const kafkaConf = {
   "group.id": "kafka-test",
-  "metadata.broker.list": "192.168.3.192:9092",
+  "metadata.broker.list": "10.23.50.185:9092",
   "socket.keepalive.enable": true,
   "debug": "generic,broker,security"
 };

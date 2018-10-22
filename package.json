@@ -9,8 +9,9 @@
   },
   "scripts": {
     "app": "node app.js",
-    "event_processor": "node event_processor.js",
-    "enricher": "node enricher.js",
-    "deliver": "node deliver.js"
+    "processor": "node processor.js",
+    "location": "node tocation.js",
+    "post_deliver": "node post_deliver.js",
+    "mail_deliver": "node mail_deliver.js"
   }
 }

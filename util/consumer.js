@@ -3,7 +3,7 @@ var Kafka = require("node-rdkafka");
 var kafkaConf = {
   "group.id": "kafka-test",
   "socket.keepalive.enable": true,
-  'metadata.broker.list': '192.168.3.192:9092'
+  'metadata.broker.list': '10.23.50.185:9092'
 };
 
 const maxMessages = 5;
