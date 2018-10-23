@@ -5,9 +5,10 @@
   "author": "Sendoa Moronta",
   "dependencies": {
     "express": "^4.16.4",
+    "iplocation": "^6.0.2",
     "lodash": "^4.17.11",
     "node-rdkafka": "^2.4.0",
-    "node-where": "^1.1.0"
+    "nodemailer": "^4.6.8"
   },
   "scripts": {
     "app": "node app.js",

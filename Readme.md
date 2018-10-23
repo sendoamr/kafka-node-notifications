@@ -17,7 +17,7 @@ docker-machine create --driver virtualbox --virtualbox-memory 6000 ap-kafka
 
 eval $(docker-machine env ap-kafka)
 
-docker-compose up
+docker-compose up -d
 ```
 Add more brokers
 ```
@@ -37,7 +37,7 @@ npm run app
 ```
 npm run processor
 ```
-## Launch location process to enrich geolocation payload
+## Launch location process to enrich ip location node
 ```
 npm run location
 ```
@@ -66,7 +66,6 @@ ldconfig
 ```
 
 ## Next steps
-- End the enrichment process
-- Refactor/clean code and improvments
+- Refactor/clean code and improvments, logging system
 - Metrics of deliver (time, count, ...)
 - Dockerize all node components
