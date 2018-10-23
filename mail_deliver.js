@@ -26,7 +26,7 @@ function sendToMail(callback, body){
 	delete body['address']; 
 	delete body['mail']; 
 	var mailOptions = {
-	  from: 'sendoamoronta@gmail.com',
+	  from: process.env.MAIL_ACCOUNT,
 	  to: email,
 	  subject: 'Message receive',
 	  text: JSON.stringify(body)
