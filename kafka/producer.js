@@ -1,11 +1,5 @@
 const Kafka = require("node-rdkafka");
-
-const kafkaConf = {
-  "group.id": "kafka-test",
-  "metadata.broker.list": "10.23.50.185:9092",
-  "socket.keepalive.enable": true,
-  "debug": "generic,broker,security"
-};
+var kafkaConf = global.gConfig['kafka-conf'];
 
 const genMessage = body => new Buffer.from(JSON.stringify(body));
 var kafkaProducer = function(topic) {

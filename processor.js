@@ -1,5 +1,6 @@
-var producer = require("./util/producer");
-var consumer = require("./util/consumer");
+const config = require('./config/config.js');
+var producer = require("./kafka/producer");
+var consumer = require("./kafka/consumer");
 
 const enrichTopic = 'evt__location';
 const postTopic = 'post__notifications';

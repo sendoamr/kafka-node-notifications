@@ -1,0 +1,20 @@
+{
+    "local": {
+        "kafka-conf": {
+        	"group.id": "kafka-test",
+        	"socket.keepalive.enable": true,
+    	    "metadata.broker.list": "10.23.50.185:9092",
+    	    "debug": "generic,broker,security"
+    	}
+    },
+    "develop": {
+        "kafka-conf": {
+    	    "metadata.broker.list": "10.23.50.185:9092"
+    	}
+    },
+    "production": {
+        "kafka-conf": {
+    	    "metadata.broker.list": "10.23.50.185:9092"
+    	}
+    }
+}

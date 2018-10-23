@@ -1,5 +1,6 @@
+const config = require('./config/config.js');
 var request = require('request');
-var consumer = require("./util/consumer");
+var consumer = require("./kafka/consumer");
 
 const topic = 'mail__notifications';
 

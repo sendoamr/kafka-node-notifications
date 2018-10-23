@@ -6,13 +6,18 @@ Project in development
 - node
 - VirtualBox and VBoxManage
 
+## Environment
+```
+export KAFKA_HOST=#your local ip
+export KAFKA_PORT=9092 #default
+```
 ## Launch Kafka and zookeeper in docker containers 
 ```
 docker-machine create --driver virtualbox --virtualbox-memory 6000 ap-kafka	
 
 eval $(docker-machine env ap-kafka)
 
-docker-compose up -d
+docker-compose up
 ```
 Add more brokers
 ```

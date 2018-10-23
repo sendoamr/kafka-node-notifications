@@ -1,11 +1,12 @@
+const config = require('./config/config.js');
 var express = require("express"); 
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-var producer = require("./util/producer");
+var producer = require("./kafka/producer");
 
 const topic = 'evt__events';
-const callback = " https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20";
+const callback = "https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20";
 const event_types = new Map();
 event_types.set('event_type1', {
 	location: true,

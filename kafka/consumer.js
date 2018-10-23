@@ -1,15 +1,11 @@
 var Kafka = require("node-rdkafka");
-
-var kafkaConf = {
-  "group.id": "kafka-test",
-  "socket.keepalive.enable": true,
-  'metadata.broker.list': '10.23.50.185:9092'
-};
+var kafkaConf = global.gConfig['kafka-conf'];
 
 const maxMessages = 5;
 let counter = 0;
 
 var kafkaConsumer = function(topic, eventCallback) {
+	console.dir(global.gConfig);
 	const consumer = new Kafka.KafkaConsumer(kafkaConf, {
 	  "auto.offset.reset": "beginning"
 	});
