@@ -2,16 +2,15 @@ const config = require('./config/config.js');
 var request = require('request');
 var consumer = require("./kafka/consumer");
 var nodemailer = require('nodemailer');
+const logger = require("./config/logger").createLoggerFactory(global.gConfig['logger']['level'], 'maildeliver', 'main');
 
 const topic = 'mail__notifications';
 
 const eventConsumer = consumer.kafkaConsumer(topic, function (data){
-	console.log('data receive');
-	console.dir(data);
+	logger.info('data receive' + data);
 	var event = JSON.parse(data);
-	console.log('notif to send');
 	sendToMail(event['callback'], event['payload'])
-});
+}, 'maildeliver', 'maildeliver-consumer');
 
 function sendToMail(callback, body){
 
@@ -34,9 +33,9 @@ function sendToMail(callback, body){
 	
 	transporter.sendMail(mailOptions, function(error, info){
 	  if (error) {
-	    console.log(error);
+	    logger.error(error);
 	  } else {
-	    console.log('Email sent: ' + info.response);
+	    logger.info('Email sent: ' + info.response);
 	  }
 	}); 
 } 

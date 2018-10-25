@@ -1,5 +1,8 @@
 {
     "local": {
+    	"logger": {
+    		"level": "debug"
+    	},
         "kafka-conf": {
         	"group.id": "kafka-test",
         	"socket.keepalive.enable": true,
@@ -8,11 +11,17 @@
     	}
     },
     "develop": {
+    	"logger": {
+    		"level": "info"
+    	},
         "kafka-conf": {
     	    "metadata.broker.list": "10.23.50.185:9092"
     	}
     },
     "production": {
+    	"logger": {
+    		"level": "error"
+    	},
         "kafka-conf": {
     	    "metadata.broker.list": "10.23.50.185:9092"
     	}

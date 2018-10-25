@@ -1,16 +1,15 @@
 const config = require('./config/config.js');
 var request = require('request');
 var consumer = require("./kafka/consumer");
+const logger = require("./config/logger").createLoggerFactory(global.gConfig['logger']['level'], 'postdeliver', 'main');
 
 const topic = 'post__notifications';
 
 const eventConsumer = consumer.kafkaConsumer(topic, function (data){
-	console.log('data receive');
-	console.dir(data);
+	logger.info('data receive' + data);
 	var event = JSON.parse(data);
-	console.log('notif to send');
 	sendToEndpoint(event['callback'], event['payload'])
-});
+}, 'postdeliver', 'postdeliver-consumer');
 
 function sendToEndpoint(callback, body){
 	var options = {
@@ -21,7 +20,7 @@ function sendToEndpoint(callback, body){
 
 	request(options, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
-	    console.log('Notification sended');
+	    logger.info('Notification sended');
 	  }
 	});
 } 

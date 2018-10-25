@@ -2,15 +2,17 @@ const config = require('./config/config.js');
 var producer = require("./kafka/producer");
 var consumer = require("./kafka/consumer");
 const iplocation = require("iplocation").default;
+const logger = require("./config/logger").createLoggerFactory(global.gConfig['logger']['level'], 'location', 'main');
+
 
 const postTopic = 'post__notifications';
 const mailTopic = 'mail__notifications';
 
-const postProducer = producer.kafkaProducer(postTopic);
-const mailProducer = producer.kafkaProducer(mailTopic);
+const postProducer = producer.kafkaProducer(postTopic, 'location', 'post-producer');
+const mailProducer = producer.kafkaProducer(mailTopic, 'location', 'mail-producer');
 
 const eventConsumer = consumer.kafkaConsumer('evt__location', function (data){
-	console.log('data receive to enrich location');
+	logger.info('data receive to enrich location');
 	var event = JSON.parse(data);
 	
 	//Ennrich by IP
@@ -25,4 +27,4 @@ const eventConsumer = consumer.kafkaConsumer('evt__location', function (data){
 
 	
 
-});
+}, 'location', 'location-consumer');

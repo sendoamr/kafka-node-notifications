@@ -1,44 +1,45 @@
-var Kafka = require("node-rdkafka");
+const Kafka = require("node-rdkafka");
+const loggerFactory = require("../config/logger");
+
 var kafkaConf = global.gConfig['kafka-conf'];
 
 const maxMessages = 5;
 let counter = 0;
 
-var kafkaConsumer = function(topic, eventCallback) {
-	console.dir(global.gConfig);
+var kafkaConsumer = function(topic, eventCallback, loggerFile, loggerClass) {
+	logger = loggerFactory.createLoggerFactory(global.gConfig['logger']['level'], loggerFile, loggerClass);
 	const consumer = new Kafka.KafkaConsumer(kafkaConf, {
 	  "auto.offset.reset": "beginning"
 	});
 
 	consumer.on("error", function(err) {
-		console.log('ERROR');
-	  console.error(err);
+		logger.info('ERROR');
+	  	logger.error(err);
 	});
 	consumer.on("ready", function(arg) {
-	  console.log(`Consumer ${arg.name} ready`);
-	  consumer.subscribe([topic]);
-	  consumer.consume();
+	  	logger.info(`Consumer ${arg.name} ready`);
+	  	consumer.subscribe([topic]);
+	  	consumer.consume();
 	});
 	consumer.on("data", function(m) {
-	console.log('DATA');
-	  counter++;
-	  if (counter % maxMessages === 0) {
-	    console.log("calling commit");
-	    consumer.commit(m);
-	  }
-	  eventCallback(m.value.toString());
+	  	counter++;
+	  	if (counter % maxMessages === 0) {
+	    	logger.info("calling commit");
+	    	consumer.commit(m);
+	  	}
+	  	eventCallback(m.value.toString());
 	});
 	consumer.on("disconnected", function(arg) {
-	  console.log('DISCONNETED');
-	  process.exit();
+	  	logger.info('DISCONNETED');
+	  	process.exit();
 	});
 	consumer.on('event.error', function(err) {
-	  console.log('ERROR');
-	  console.error(err);
-	  process.exit(1);
+	  	logger.info('ERROR');
+	  	logger.error(err);
+	  	process.exit(1);
 	});
 	consumer.on('event.log', function(log) {
-	  console.log(log);
+	  	logger.info(log);
 	});
 	consumer.connect();
 }

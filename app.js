@@ -1,23 +1,17 @@
 const config = require('./config/config.js');
+const logger = require("./config/logger").createLoggerFactory(global.gConfig['logger']['level'], 'app', 'main');
 var express = require("express"); 
+
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 var producer = require("./kafka/producer");
 
 const topic = 'evt__events';
-const callback = "https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20";
-const event_types = new Map();
-event_types.set('event_type1', {
-	location: true,
-	callback: callback
-});
-event_types.set('event_type2', {
-	location: false,
-	callback: callback,
-});
+const eventsProducer = producer.kafkaProducer(topic, 'app', 'main-producer');
 
-const eventsProducer = producer.kafkaProducer(topic);
+//load event types
+const event_types = require('./config/events.json');
 
 const genMessage = body => new Buffer.from(JSON.stringify(body));
 
@@ -28,16 +22,17 @@ app.post('/events', function(req, res) {
     	value['payload'] = data;
     	value['event_time'] = time;
     	producer.sendMessage(eventsProducer, topic, value);
-    	console.log("Message sended to events")
+    	logger.info("Message sended to events")
     });
    	res.sendStatus(200);
 });
 
+//TODO to development
 app.post('/events/:type', function(req, res) {
 	var itemId = req.params.id;
-	console.log('Send ' + itemId);
+	logger.info('Send specify event type' + itemId);
 });
 
 var server = app.listen(8080, function () {
-	console.log('Event generator running in 8080'); 
+	logger.info('Event generator running in 8080'); 
 });
