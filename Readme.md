@@ -1,4 +1,4 @@
-Project in development
+Project in development yo can send improvments and ideas to sendoamoronta@gmail.com
 ## Requisites
 - docker
 - docker-compose 
@@ -66,6 +66,6 @@ ldconfig
 ```
 
 ## Next steps
-- Refactor/clean code and improvments, logging system
+- Refactor/clean/test code and improvments
 - Metrics of deliver (time, count, ...)
 - Dockerize all node components
