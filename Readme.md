@@ -65,6 +65,14 @@ make install
 ldconfig
 ```
 
+Show event types in mongo
+```
+sudo docker exec -i -t d02e27b58e5c /bin/bash #container id
+mongo
+use reach-engine
+db.EventTypes.find()
+```
+
 ## Next steps
 - Refactor/clean/test code and improvments
 - Metrics of deliver (time, count, ...)

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "event_type1",
+    "location": true,
+    "callback": "https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20"
+  },
+  {
+    "id": "event_type2",
+    "location": false,
+    "callback": "https://webhook.site/c32d8655-96de-4533-ad23-f532f49a3e20"
+  }
+]
