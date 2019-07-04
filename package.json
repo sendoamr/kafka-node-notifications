@@ -10,13 +10,17 @@
     "mongoose": "^5.3.7",
     "node-rdkafka": "^2.4.0",
     "nodemailer": "^4.6.8",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "snyk": "^1.189.0"
   },
   "scripts": {
     "app": "node app.js",
     "processor": "node processor.js",
     "location": "node location.js",
     "post_deliver": "node post_deliver.js",
-    "mail_deliver": "node mail_deliver.js"
-  }
+    "mail_deliver": "node mail_deliver.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
