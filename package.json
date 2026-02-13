@@ -5,7 +5,7 @@
   "author": "Sendoa Moronta",
   "dependencies": {
     "express": "^4.16.4",
-    "iplocation": "^6.0.2",
+    "iplocation": "^7.0.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.3.7",
     "node-rdkafka": "^2.4.0",
